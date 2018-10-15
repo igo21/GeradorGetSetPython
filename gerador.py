@@ -66,7 +66,7 @@ class Aplicacao:
                 gete = ''
                 sete = ''
                 gete = "\n@property\ndef " + texto[i] + "(self):\n\treturn self.__" + texto[i]
-                sete = "\n@"+texto[i]+".setter\ndef " + texto[i] + "(self,valor):\n\tself.__" + texto[i] + "=valor"
+                sete = "\n@"+texto[i]+".setter\ndef " + texto[i] + "(self,valor):\n\tself.__" + texto[i] + " = valor"
                 mae=mae+(gete+sete)
             else:
                 pass
