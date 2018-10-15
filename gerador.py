@@ -3,6 +3,7 @@ import clipboard
 #O.S, utilizar a do copy da area de transferência
 class Aplicacao:
     def __init__(self, master=None):
+        self.telamaster = master
         self.fontePadrao = ("Arial", "10", 'bold')
         self.primeiroContainer = Frame(master)
         self.primeiroContainer['bg'] = '#696969'
@@ -40,6 +41,17 @@ class Aplicacao:
         self.copiar["command"] = self.copiaTexto
         self.copiar.pack(side=TOP)
 
+        #botão sair
+        self.sair = Button(self.primeiroContainer)
+        self.sair["text"] = "Sair"
+        self.sair["font"] = ("Calibri", "12", "bold")
+        self.sair["width"] = 20
+        self.sair['bg'] = '#000'
+        self.sair['fg'] = '#fff'
+        self.sair["command"] = self.sair_exit
+        self.sair.pack(side=TOP)
+        
+        
         self.text2 = Text(master, height=32, width=60)
         self.scroll = Scrollbar(master, command=self.text2.yview)
         self.text2.configure(yscrollcommand=self.scroll.set)
@@ -74,16 +86,22 @@ class Aplicacao:
         self.apagaTexto2()
         self.text2.insert(END,"#Propertys Geradas com Sucesso! por Igor Ramos de Oliveira:  #2018-09/03\n\n")
         self.text2.insert(END,mae)
+        
     def apagaTexto(self):
         self.text2.delete(1.0, END)
         self.text2.insert(END, '#Feito por Igor Ramos de Oliveira, 03-09-2018.\n')
         self.quote = '#Digite os atributos separados por enter\n'
         self.text2.insert(END, self.quote, 'color')
+        
     def apagaTexto2(self):
         self.text2.delete(1.0, END)
+        
     def copiaTexto(self):
         texto = self.text2.get(1.0, END)
         clipboard.copy(texto)
+
+    def sair_exit(self):
+        self.telamaster.destroy()
 
 def centralizar(janela):
     x = (janela.winfo_screenwidth() - janela.winfo_reqwidth()) / 6
